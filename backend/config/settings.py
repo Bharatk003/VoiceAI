@@ -11,7 +11,7 @@ https://docs.djangoproject.com/en/5.2/ref/settings/
 """
 
 from pathlib import Path
-
+import os
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 
@@ -44,6 +44,7 @@ INSTALLED_APPS = [
     'rest_framework_simplejwt.token_blacklist',
      
     'users',
+    'audio_processor',
 ]
 # myproject/settings.py
 # ...
@@ -158,3 +159,16 @@ SIMPLE_JWT = {
 
 
 CORS_ALLOW_ALL_ORIGINS = True # Set to False in production!
+# Media files (user uploads)
+MEDIA_URL = '/media/'
+MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
+
+
+
+CELERY_BROKER_URL = 'redis://localhost:6379/0' # Default Redis URL
+CELERY_RESULT_BACKEND = 'redis://localhost:6379/0'
+CELERY_ACCEPT_CONTENT = ['json']
+CELERY_TASK_SERIALIZER = 'json'
+CELERY_RESULT_SERIALIZER = 'json'
+CELERY_TIMEZONE = 'Asia/Kolkata' # Or your desired timezone
+CELERY_TASK_TRACK_STARTED = True # Track task status as 'STARTED'
