@@ -7,8 +7,8 @@ from django.conf.urls.static import static # Import static
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('api/auth/', include('users.urls')), # All auth endpoints under /api/auth/
-    # Add other app URLs here, e.g.,
-    # path('api/audio/', include('audio_processing_app.urls')),
+    path('api/', include('audio_processor.urls')),  # All audio processing endpoints under /api/
+     
 ]
 
 if settings.DEBUG:
